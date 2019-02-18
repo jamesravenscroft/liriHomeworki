@@ -1,6 +1,38 @@
 /*
 *	Load Required Node Modules
+
+
+ooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
 */
+// fs is a core Node package for reading and writing files
+var fs = require("fs");
+
+// This block of code will read from the "movies.txt" file.
+// It's important to include the "utf8" parameter or the code will provide stream data (garbage)
+// The code will store the contents of the reading inside the variable "data"
+fs.readFile("best_things_ever.txt", "utf8", function(error, data) {
+
+  // If the code experiences any errors it will log the error to the console.
+  if (error) {
+    return console.log(error);
+  }
+
+  // We will then print the contents of data
+  console.log(data);
+
+  // Then split it by commas (to make it more readable)
+  var dataArr = data.split(",");
+
+  // We will then re-display the content as an array for later use.
+  console.log(dataArr);
+
+});
+//oooooooooooooooo	return error	oooooooooooooooooooooo
+
+
+
+
 
 var Twitter = require('twitter');
 var spotify = require('spotify');
@@ -18,7 +50,7 @@ var twitterKeys = keys.twitterKeys;
 * 	Read in command line arguments
 */
 
-// Read in the command line arguments
+// Read in the command line arguments. This is gonna be so cool!
 var cmdArgs = process.argv;
 
 // The LIRI command will always be the second command line argument
@@ -30,7 +62,7 @@ for (var i = 3; i < cmdArgs.length; i++) {
 	liriArg += cmdArgs[i] + ' ';
 }
 
-// retrieveTweets will retrieve my last 20 tweets and display them together with the date
+// retrieveTweets will retrieve my last 20 tweets and display them together with the date. This is gonna be so cool!
 function retrieveTweets() {
 	// Append the command to the log file
 	fs.appendFile('./log.txt', 'User Command: node liri.js my-tweets\n\n', (err) => {
@@ -55,7 +87,7 @@ function retrieveTweets() {
 			});
 			return;
 		} else {
-			// Pretty print user tweets
+			// Pretty print user tweets. This is gonna be so cool!
 			var outputStr = '------------------------\n' +
 							'User Tweets:\n' + 
 							'------------------------\n\n';
@@ -75,17 +107,17 @@ function retrieveTweets() {
 	});
 }
 
-// spotifySong will retrieve information on a song from Spotify
+// spotifySong will retrieve information on a song from Spotify. This is gonna be so cool!
 function spotifySong(song) {
 	// Append the command to the log file
 	fs.appendFile('./log.txt', 'User Command: node liri.js spotify-this-song ' + song + '\n\n', (err) => {
 		if (err) throw err;
 	});
 
-	// If no song is provided, LIRI defaults to 'The Sign' by Ace Of Base
+	// If no song is provided, LIRI defaults to 'Aces High' by Iron Maiden
 	var search;
 	if (song === '') {
-		search = 'The Sign Ace Of Base';
+		search = 'Aces High Iron Maiden';
 	} else {
 		search = song;
 	}
@@ -94,14 +126,14 @@ function spotifySong(song) {
 	    if (error) {
 			var errorStr1 = 'ERROR: Retrieving Spotify track -- ' + error;
 
-			// Append the error string to the log file
+			// Append the error string to the log file. This is gonna be so cool!
 			fs.appendFile('./log.txt', errorStr1, (err) => {
 				if (err) throw err;
 				console.log(errorStr1);
 			});
 			return;
 	    } else {
-			var songInfo = data.tracks.items[0];
+			var songInfo = acedata.tracks.items[0];
 			if (!songInfo) {
 				var errorStr2 = 'ERROR: No song info retrieved, please check the spelling of the song name!';
 
@@ -112,7 +144,7 @@ function spotifySong(song) {
 				});
 				return;
 			} else {
-				// Pretty print the song information
+				// Pretty print the song information. This is gonna be so cool!
 				var outputStr = '------------------------\n' + 
 								'Song Information:\n' + 
 								'------------------------\n\n' + 
@@ -131,17 +163,17 @@ function spotifySong(song) {
 	});
 }
 
-// retrieveOMDBInfo will retrieve information on a movie from the OMDB database
+// retrieveOMDBInfo will retrieve information on a movie from the OMDB database. This is gonna be so cool!
 function retrieveOBDBInfo(movie) {
 	// Append the command to the log file
 	fs.appendFile('./log.txt', 'User Command: node liri.js movie-this ' + movie + '\n\n', (err) => {
 		if (err) throw err;
 	});
 
-	// If no movie is provided, LIRI defaults to 'Mr. Nobody'
+	// If no movie is provided, LIRI defaults to 'Mr. 3000'
 	var search;
 	if (movie === '') {
-		search = 'Mr. Nobody';
+		search = 'Mr. 3000';
 	} else {
 		search = movie;
 	}
