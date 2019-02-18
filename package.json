@@ -1,0 +1,25 @@
+{
+  "name": "liriHomeworki",
+  "version": "1.0.0",
+  "description": "LIRI - Language Interpretation and Recognition Interface Video available @",
+  "main": ".env.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesravenscroft/liriHomeworki.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamesravenscroft/liriHomeworki/issues"
+  },
+  "homepage": "https://github.com/jamesravenscroft/liriHomeworki#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^6.2.0",
+    "moment": "^2.24.0"
+  }
+}

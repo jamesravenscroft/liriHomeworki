@@ -4,8 +4,14 @@
 
 ooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
+
 */
 // fs is a core Node package for reading and writing files
+require("dotenv").config();
+var keys = require("./keys.js");
+var spotify = new Spotify(keys.spotify);
+
+
 var fs = require("fs");
 
 // This block of code will read from the "movies.txt" file.
@@ -33,8 +39,6 @@ fs.readFile("best_things_ever.txt", "utf8", function(error, data) {
 
 
 
-
-var Twitter = require('twitter');
 var spotify = require('spotify');
 var request = require('request');
 var fs = require('fs');
@@ -44,7 +48,6 @@ var fs = require('fs');
 */
 
 var keys = require('./keys.js');
-var twitterKeys = keys.twitterKeys;
 
 /*
 * 	Read in command line arguments
@@ -63,14 +66,14 @@ for (var i = 3; i < cmdArgs.length; i++) {
 }
 
 // retrieveTweets will retrieve my last 20 tweets and display them together with the date. This is gonna be so cool!
-function retrieveTweets() {
+function retrieveBands() {
 	// Append the command to the log file
-	fs.appendFile('./log.txt', 'User Command: node liri.js my-tweets\n\n', (err) => {
+	fs.appendFile('./log.txt', 'User Command: node liri.js my-bands\n\n', (err) => {
 		if (err) throw err;
 	});
 
-	// Initialize the Twitter client
-	var client = new Twitter(twitterKeys);
+	// Initialize the Band client
+	var client = new Band(BandKeys);
 
 	// Set the 'screen_name' to my Twitter handle
 	var params = {screen_name: '_angrbrd', count: 20};
@@ -78,7 +81,7 @@ function retrieveTweets() {
 	// Retrieve the last 20 tweets
 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
 		if (error) {
-			var errorStr = 'ERROR: Retrieving user tweets -- ' + error;
+			var errorStr = 'ERROR: Retrieving bands -- ' + error;
 
 			// Append the error string to the log file
 			fs.appendFile('./log.txt', errorStr, (err) => {
@@ -89,7 +92,7 @@ function retrieveTweets() {
 		} else {
 			// Pretty print user tweets. This is gonna be so cool!
 			var outputStr = '------------------------\n' +
-							'User Tweets:\n' + 
+							'User Bands:\n' + 
 							'------------------------\n\n';
 
 			for (var i = 0; i < tweets.length; i++) {
@@ -250,8 +253,8 @@ function doAsYerTold() {
 			var param = cmdString[1].trim();
 
 			switch(command) {
-				case 'my-tweets':
-					retrieveTweets(); 
+				case 'my-bands':
+					retrieveBands(); 
 					break;
 
 				case 'spotify-this-song':
@@ -267,8 +270,8 @@ function doAsYerTold() {
 }
 
 // Determine which LIRI command is being requested by the user
-if (liriCommand === 'my-tweets') {
-	retrieveTweets(); 
+if (liriCommand === 'my-bands') {
+	retrieveBands(); 
 
 } else if (liriCommand === `spotify-this-song`) {
 	spotifySong(liriArg);
@@ -287,7 +290,7 @@ if (liriCommand === 'my-tweets') {
 		// If the user types in a command that LIRI does not recognize, output the Usage menu 
 		// which lists the available commands.
 		outputStr = 'Usage:\n' + 
-				   '    node liri.js my-tweets\n' + 
+				   '    node liri.js my-bands\n' + 
 				   '    node liri.js spotify-this-song "<song_name>"\n' + 
 				   '    node liri.js movie-this "<movie_name>"\n' + 
 				   '    node liri.js do-what-it-says\n';
@@ -299,3 +302,32 @@ if (liriCommand === 'my-tweets') {
 		});
 	});
 }
+// Grab the axios package...
+var axios = require("axios");
+
+// Run the axios.get function...
+// The axios.get function takes in a URL and returns a promise (just like $.ajax)
+axios
+  .get("http://www.artists.bandsintown.com/bandsintown-api")
+  .then(function(response) {
+    // If the axios was successful...
+    // Then log the body from the site!
+    console.log(response.data);
+  })
+  .catch(function(error) {
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    } else if (error.request) {
+      // The request was made but no response was received
+      // `error.request` is an object that comes back with details pertaining to the error that occurred.
+      console.log(error.request);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.log("Error", error.message);
+    }
+    console.log(error.config);
+  });

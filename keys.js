@@ -1,4 +1,4 @@
-//Get Spotify key
+
 
 exports.twitterKeys = {
   consumer_key: 'mbg1foZtVoYsrIZ8MI6oASa9n',
@@ -14,3 +14,6 @@ exports.spotify = {
   id: process.env.SPOTIFY_ID,
   secret: process.env.SPOTIFY_SECRET
 };
+
+
+"https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"
