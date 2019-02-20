@@ -4,6 +4,10 @@ Note: this repo is broken. Its essentially the same as the working repo, I think
 FUNCTIONING REPO:
 https://github.com/jamesravenscroft/newLiriFixy
 
+
+LINK TO RESUME:
+file:///C:/Users/jrave/reasonToDrink.Fun/resume/index.html
+
 Instructions:
 cli:
 node liri.js movie-this (insert movie)
