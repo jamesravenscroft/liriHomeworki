@@ -1,6 +1,8 @@
 # liri-node-app
 LIRI - Language Interpretation and Recognition Interface
-Video available @
+Note: this repo is broken. Its essentially the same as the working repo, I think I did an install out of order. My liri.js on this has 300 lines of notes. 
+FUNCTIONING REPO:
+https://github.com/jamesravenscroft/newLiriFixy
 
 Instructions:
 cli:
