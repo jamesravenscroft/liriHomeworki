@@ -2,7 +2,14 @@
   "name": "liriHomeworki",
   "version": "1.0.0",
   "description": "LIRI - Language Interpretation and Recognition Interface Video available @",
-  "main": ".env.js",
+  "main": "keys.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^6.2.0",
+    "node-spotify-api": "^1.0.7",
+    "moment": "^2.24.0"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,10 +23,5 @@
   "bugs": {
     "url": "https://github.com/jamesravenscroft/liriHomeworki/issues"
   },
-  "homepage": "https://github.com/jamesravenscroft/liriHomeworki#readme",
-  "dependencies": {
-    "axios": "^0.18.0",
-    "dotenv": "^6.2.0",
-    "moment": "^2.24.0"
-  }
+  "homepage": "https://github.com/jamesravenscroft/liriHomeworki#readme"
 }

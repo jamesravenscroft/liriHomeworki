@@ -9,12 +9,12 @@ var fs = require('fs');
 // fs is a core Node package for reading and writing files
 require("dotenv").config();
 var keys = require("./keys.js");
+var Spotify = require("node-spotify-api");
 var spotify= new Spotify(keys.spotify);
-var spotify = require('spotify');
 var fs = require("fs");
 // Grab the axios package...
 var axios = require("axios");
-//console.log(spotify)
+// console.log(spotify)
 
 //New way to do Command line interactions
 var term= process.argv[2];
